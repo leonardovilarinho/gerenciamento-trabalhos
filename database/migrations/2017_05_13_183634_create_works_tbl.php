@@ -20,7 +20,7 @@ class CreateWorksTbl extends Migration
             $table->datetime('term');
             $table->text('comment');
 
-            $table->integer('discipline_id')->unsigned()->unique();
+            $table->integer('discipline_id')->unsigned();
             $table->foreign('discipline_id')
               ->references('id')
               ->on('disciplines')

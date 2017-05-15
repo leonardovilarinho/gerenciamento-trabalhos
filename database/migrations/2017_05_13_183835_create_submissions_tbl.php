@@ -18,7 +18,7 @@ class CreateSubmissionsTbl extends Migration
             $table->string('protocol', 45);
             $table->decimal('value', 45);
 
-            $table->integer('work_id')->unsigned()->unique();
+            $table->integer('work_id')->unsigned();
             $table->foreign('work_id')
               ->references('id')
               ->on('works')

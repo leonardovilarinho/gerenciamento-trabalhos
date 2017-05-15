@@ -14,19 +14,19 @@ class CreateCoursesDisciplinesTbl extends Migration
     public function up()
     {
         Schema::create('courses_disciplines', function (Blueprint $table) {
-            $table->integer('teacher_id')->unsigned()->unique();
+            $table->integer('teacher_id')->unsigned();
             $table->foreign('teacher_id')
               ->references('user_id')
               ->on('teachers')
             ->onDelete('cascade');
 
-            $table->integer('discipline_id')->unsigned()->unique();
+            $table->integer('discipline_id')->unsigned();
             $table->foreign('discipline_id')
               ->references('id')
               ->on('disciplines')
             ->onDelete('cascade');
 
-            $table->integer('course_id')->unsigned()->unique();
+            $table->integer('course_id')->unsigned();
             $table->foreign('course_id')
               ->references('id')
               ->on('courses')

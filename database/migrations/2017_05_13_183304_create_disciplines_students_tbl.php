@@ -14,13 +14,13 @@ class CreateDisciplinesStudentsTbl extends Migration
     public function up()
     {
         Schema::create('disciplines_students', function (Blueprint $table) {
-            $table->integer('student_id')->unsigned()->unique();
+            $table->integer('student_id')->unsigned();
             $table->foreign('student_id')
               ->references('user_id')
               ->on('students')
             ->onDelete('cascade');
 
-            $table->integer('discipline_id')->unsigned()->unique();
+            $table->integer('discipline_id')->unsigned();
             $table->foreign('discipline_id')
               ->references('id')
               ->on('disciplines')

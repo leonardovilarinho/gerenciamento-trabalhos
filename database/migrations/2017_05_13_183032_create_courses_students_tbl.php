@@ -14,13 +14,13 @@ class CreateCoursesStudentsTbl extends Migration
     public function up()
     {
         Schema::create('courses_students', function (Blueprint $table) {
-            $table->integer('student_id')->unsigned()->unique();
+            $table->integer('student_id')->unsigned();
             $table->foreign('student_id')
               ->references('user_id')
               ->on('students')
             ->onDelete('cascade');
 
-            $table->integer('course_id')->unsigned()->unique();
+            $table->integer('course_id')->unsigned();
             $table->foreign('course_id')
               ->references('id')
               ->on('courses')
