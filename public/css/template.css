@@ -1,4 +1,4 @@
-
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 html, body {
     background-color: #fff;
     color: #636b6f;
@@ -8,6 +8,13 @@ html, body {
     margin: 0;
 }
 
+.menu-word a
+{
+    text-align: center;
+}
+.cabecalho{
+    background-color: black;
+}
 a
 {
 	display: block !important;
