@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         {{ Html::style('css/bootstrap.min.css') }}
-        <link href="https://fonts.googleapis.com/css?family=Raleway:300,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:300,600" rel="stylesheet" type="text/css"
 
         <!-- Styles -->
         <style>

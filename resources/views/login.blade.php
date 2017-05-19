@@ -8,8 +8,7 @@
 
 @section('content')
 <div class="m-b-md row">
-
-    <div class="panel panel-default col-md-5 col-md-offset-4" style="text-align: center;">
+    <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
     <h3>Entrar no sistema</h3>
     <hr>
         <div class="panel-body">
