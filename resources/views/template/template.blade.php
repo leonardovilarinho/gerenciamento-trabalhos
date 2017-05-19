@@ -18,7 +18,11 @@
     </head>
   <body class="w3-light-grey">
         <div class="w3-bar w3-top w3-black w3-large menu-top" style="z-index:4; ">
+<<<<<<< HEAD
+            <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">Menu</button>
+=======
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i> Menu</button>
+>>>>>>> e720fa70b5285e9b6a5b2afbe055f0f4db399e60
             <span class="w3-bar-item w3-right">Cadastrar</span>
             <span class="w3-bar-item w3-right">Entrar</span>
         </div>
@@ -38,12 +42,20 @@
 	        <h5>Opções da Pagina</h5>
 	      </div>
 	      <div class="w3-bar-block">
+<<<<<<< HEAD
+	        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">Fechar Menu</a>
+=======
 	        <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+>>>>>>> e720fa70b5285e9b6a5b2afbe055f0f4db399e60
 	        <a href="#" class=" w3-button w3-blue menu-word">  Opc 1</a>
 	        <a href="#" class="w3-button w3-padding">  Opc 2</a>
 	        <a href="#" class="menu-word w3-button w3-padding">  Opc 3</a>
 	        <a href="#" class="menu-word w3-button w3-padding">  Opc 4</a>
+<<<<<<< HEAD
+	        <a href="#" class="menu-word w3-button w3-padding">  Opc 5</a>
+=======
 	        <a href="#" class="menu-word w3-button w3-padding"> Opc 5</a>
+>>>>>>> e720fa70b5285e9b6a5b2afbe055f0f4db399e60
 	        <a href="#" class="menu-word w3-button w3-padding">  Opc 6</a>
 	        <a href="#" class="menu-word w3-button w3-padding">  Opc 7</a>
 	        <a href="#" class="menu-word w3-button w3-padding">  Opc 8</a>
