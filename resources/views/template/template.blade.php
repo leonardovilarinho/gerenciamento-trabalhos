@@ -55,9 +55,9 @@
       @endif
 
 	    <br><br>
+              <article class="col-md-6 col-md-offset-4" style="border-left: 1px solid #eee">
             @yield('content')
-              <article class="col-md-offset-5">
-                <footer>
+                <footer class="text-center">
                     <hr>
                     &copy; 2017 - Análise e Desenvolvimento de Sistemas - IFTM
                 </footer>
