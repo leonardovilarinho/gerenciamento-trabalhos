@@ -8,10 +8,11 @@ html, body {
     margin: 0;
 }
 
-.menu-lateral
+.menu-lateral, .menu-top
 {
     position: fixed;
 }
+
 .menu-word a
 {
     text-align: center;
