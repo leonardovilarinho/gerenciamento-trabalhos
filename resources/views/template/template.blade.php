@@ -34,38 +34,35 @@
 
 	    <!-- Sidebar/menu -->
       @if(auth()->check())
-        <nav class="w3-sidebar w3-collapse w3-white w3-animate-left menu-lateral" style="z-index:3;width:300px;" id="mySidebar"><br>
-          <div class="w3-container w3-row">
-            <div class="w3-col s8 w3-bar">
-              <span>Bem Vindo, <strong>Usuário</strong></span><br>
+          <nav class="w3-sidebar w3-collapse w3-white w3-animate-left menu-lateral" style="z-index:3;width:300px;" id="mySidebar"><br>
+              <div class="w3-container w3-row">
+                <div class="w3-col s8 w3-bar">
+                  <span>Bem Vindo, <strong>Usuário</strong></span><br>
+                </div>
+              </div>
+              <hr>
+              <div class="w3-container">
+                <h5><strong>Opções da Pagina:</strong></h5>
+              </div>
+              <div class="w3-bar-block">
+                <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">Fechar Menu</a>
+                @section('sidebar')
+                @show
+                <a href="#" class="menu-word w3-button w3-padding">  Opc 9</a>
             </div>
-          </div>
-          <hr>
-          <div class="w3-container">
-            <h5><strong>Opções da Pagina:</strong></h5>
-          </div>
-          <div class="w3-bar-block">
-
-            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu">Fechar Menu</a>
-
-            <a href="#" class="menu-word w3-button w3-padding">  Opc 9</a>
-          </div>
-        </nav>
+          </nav>
       @else
       @endif
-
 	    <br><br>
-              <article class="col-md-6 col-md-offset-4" style="border-left: 1px solid #eee">
-            @yield('content')
-                <footer class="text-center">
-                    <hr>
-                    &copy; 2017 - Análise e Desenvolvimento de Sistemas - IFTM
-                </footer>
-              </article>
-                </div>
-            </div>
-        </div>
-        <script>
+      <article class="col-md-6 col-md-offset-4" style="border-left: 1px solid #eee">
+        @yield('content')
+        
+          <footer class="text-center">
+            <hr>
+            &copy; 2017 - Análise e Desenvolvimento de Sistemas - IFTM
+          </footer>
+      </article>
+      <script>
         // Get the Sidebar
 			var mySidebar = document.getElementById("mySidebar");
 
@@ -88,7 +85,7 @@
 			    mySidebar.style.display = "none";
 			    overlayBg.style.display = "none";
 			}
-		</script>
+		  </script>
         {{ Html::script('js/app.js') }}
         {{ Html::script('js/jquery.js') }}
         {{ Html::script('js/bootstrap.min.js') }}
