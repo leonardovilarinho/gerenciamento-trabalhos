@@ -6,7 +6,7 @@ Route::group(['middleware' => 'web'], function() {
 	Route::post('primeiro-acesso', 'InstalacaoController@registroPrimeiroAcesso');
 
 	Route::get('', 'AuthController@panelLogin');
-	Route::post('login', 'AuthController@into');
+	Route::post('into', 'AuthController@into');
 
 	Route::get('panel', 'PanelController@start');
 

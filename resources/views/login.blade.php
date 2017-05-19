@@ -8,9 +8,10 @@
 
 @section('content')
 <div class="m-b-md row">
-    <div class="col-md-offset-4"><h3>Entrar no sistema</h3></div>
 
-    <div class="panel panel-default col-md-5 col-md-offset-4">
+    <div class="panel panel-default col-md-5 col-md-offset-4" style="text-align: center;">
+    <h3>Entrar no sistema</h3>
+    <hr>
         <div class="panel-body">
         {!! Form::open(['url' => '/into', 'method' => 'post']) !!}
 
