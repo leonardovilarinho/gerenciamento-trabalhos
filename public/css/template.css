@@ -8,6 +8,32 @@ html, body {
     margin: 0;
 }
 
+a
+{
+    display: block !important;
+}
+
+.edit-btn
+{
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: white;
+    color: white;
+}
+
+.delete-btn
+{
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: white;
+}
+
+.delete-btn a i { color: red; }
+
 .menu-lateral, .menu-top
 {
     position: fixed;
@@ -37,8 +63,7 @@ a
 }
 
 .acoes {
-    float: right;
-    margin-top: 0px;
+    display: inline;
 }
 
 .object {
@@ -156,4 +181,8 @@ li.object:hover {
 .title *{
     color: #fff !important;
     background-color: #636b6f;
+}
+
+.botao-index {
+    display: inline;
 }

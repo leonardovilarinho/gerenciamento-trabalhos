@@ -19,7 +19,7 @@ class AuthController extends Controller
     	return view('login');
     }
 
-    public function into(Request $request)
+    public function login(Request $request)
     {
     	$login = trim( $request->input('login') );
     	$login = strtolower( $login );
@@ -36,7 +36,7 @@ class AuthController extends Controller
     	return redirect('panel');
     }
 
-    public function sair()
+    public function exit()
     {
     	auth()->logout();
 
