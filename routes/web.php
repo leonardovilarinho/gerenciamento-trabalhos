@@ -20,6 +20,12 @@ Route::group(['middleware' => 'web'], function() {
 		Route::get('{id}/edit', 'AdminController@edit');
 	});
 
+	Route::get('/course/new', 'CourseController@index');
+	Route::post('/course/new', 'CourseController@store');
+	Route::get('/course/{id}/edit', 'CourseController@edit');
+	Route::post('/course/{id}/edit/update', 'CourseController@update');
+	Route::get('/course/{id}/delete', 'CourseController@delete');
+
 	Route::get('erro', function() {
 		return view('erro');
 	});
