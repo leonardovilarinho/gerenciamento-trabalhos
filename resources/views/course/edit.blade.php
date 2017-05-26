@@ -10,19 +10,19 @@
 <article class="col-md-6 col-md-offset-3" style="border-left: 1px solid #eee">
     <div class="m-b-md row">
         <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
-        <h3>Entrar no sistema</h3>
+        <h3>Editar o curso {{$course->name}}</h3>
         <hr>
             <div class="panel-body">
-            {!! Form::open(['url' => '/login', 'method' => 'post']) !!}
+            {!! Form::open(['url' => '/course/'.$course->id.'/edit/update', 'method' => 'post']) !!}
 
                 <div class="form-group">
-                    {{ Form::label('login', 'Usuário ou Email') }}
-                    {{ Form::text('login', '', ['class' => 'form-control', 'required']) }}
+                    {{ Form::label('name', 'Nome do curso') }}
+                    {{ Form::text('name', $course->name, ['class' => 'form-control', 'required']) }}
                 </div>
 
                 <div class="form-group">
-                    {{ Form::label('password', 'Senha') }}
-                    {{ Form::password('password', ['class' => 'form-control', 'required']) }}
+                    {{ Form::label('abbreviation', 'Abreviação do curso') }}
+                    {{ Form::text('abbreviation', $course->abbreviation, ['class' => 'form-control', 'required']) }}
                 </div>
 
                 <hr>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="col-md-4 text-right">
-                        {{  Form::submit('Entrar no sistema', ['class' => 'btn btn-default']) }}
+                        {{  Form::submit('Salvar', ['class' => 'btn btn-default']) }}
                     </div>
                 </div>
             {!! Form::close() !!}

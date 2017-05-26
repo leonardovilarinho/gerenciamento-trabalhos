@@ -7,6 +7,7 @@
     <a href="admin" class="w3-button w3-padding">Administrator</a>
     <a href="#" class="w3-button w3-padding">Teacher</a>
     <a href="#" class="w3-button w3-padding">Student</a>
+    <a href="{{url('/course/new')}}" class="w3-button w3-padding">Course</a>
     </div>
 @endsection
 
