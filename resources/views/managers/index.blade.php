@@ -1,10 +1,10 @@
 @extends('template.template')
 
-@section('title', 'Entrar no sistema')
+@section('title', 'Administradores')
 
 @section('sidebar')
-    <a href="{{url('admin/new')}}" class="w3-button w3-padding">New</a>
-    <a href="{{url('panel')}}" class="w3-button w3-padding">Back</a>
+    <a href="{{url('admin/new')}}" class="w3-button w3-padding">Criar novo</a>
+    <a href="{{url('panel')}}" class="w3-button w3-padding">Voltar</a>
 @endsection
 
 @section('content')
@@ -12,13 +12,14 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="row">
+            {{ $managers->links() }}
             <table class="table" style="margin-left: 5px ; padding-right: 20px">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Username</th>
+                        <th>Nome</th>
+                        <th>Usuário</th>
                         <th>Email</th>
-                        <th>Action</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody style="text-align: left;">

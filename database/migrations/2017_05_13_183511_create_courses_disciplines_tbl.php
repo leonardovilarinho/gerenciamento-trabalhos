@@ -14,7 +14,7 @@ class CreateCoursesDisciplinesTbl extends Migration
     public function up()
     {
         Schema::create('courses_disciplines', function (Blueprint $table) {
-            $table->integer('teacher_id')->unsigned();
+            $table->integer('teacher_id')->unsigned()->nullable();
             $table->foreign('teacher_id')
               ->references('user_id')
               ->on('teachers')

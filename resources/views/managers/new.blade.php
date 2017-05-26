@@ -1,10 +1,10 @@
 @extends('template.template')
 
-@section('title', 'Entrar no sistema')
+@section('title', 'Criar administrador')
 
 @section('sidebar')
 
-<a href="{{url('admin')}}" class="w3-button w3-padding">Back</a>
+<a href="{{url('admin')}}" class="w3-button w3-padding">Voltar atrás</a>
 
 @endsection
 

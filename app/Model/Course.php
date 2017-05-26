@@ -11,4 +11,8 @@ class Course extends Model
         'abbreviation',
     ];
     
+    public function disciplines()
+    {
+        return $this->belongsToMany(Discipline::class, 'courses_disciplines', 'course_id', 'discipline_id');
+    }
 }

@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
   public function index()
   {
-    $managers = Manager::all();
+    $managers = Manager::paginate(5);
     return view('managers.index',compact('managers'));
   }
 

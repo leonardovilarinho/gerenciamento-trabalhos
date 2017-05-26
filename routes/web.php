@@ -1,12 +1,18 @@
 <?php
 
-Route::group(['middleware' => 'web'], function() {
-
+Route::group(['middleware' => 'guest'], function() {
 	Route::get('primeiro-acesso', 'InstalacaoController@inicioForm');
 	Route::post('primeiro-acesso', 'InstalacaoController@registroPrimeiroAcesso');
 
 	Route::get('', 'AuthController@panelLogin');
 	Route::post('login', 'AuthController@login');
+});
+
+Route::get('erro', function() {
+	return view('erro');
+});
+
+Route::group(['middleware' => 'auth'], function() {
 	Route::get('exit', 'AuthController@exit');
 
 	Route::get('panel', 'PanelController@start');
@@ -32,8 +38,4 @@ Route::group(['middleware' => 'web'], function() {
 	Route::get('/discipline/{id}/edit', 'DisciplineController@edit');
 	Route::post('/discipline/{id}/edit/update', 'DisciplineController@update');
 	Route::get('/discipline/{id}/delete', 'DisciplineController@delete');
-
-	Route::get('erro', function() {
-		return view('erro');
-	});
 });

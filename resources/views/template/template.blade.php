@@ -21,9 +21,9 @@
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">Menu</button>
             <div class="menu-top-nome">
               @if(auth()->check())
-                  <a href="{{ url('exit') }}"><span class="w3-bar-item w3-right">Exit</span></a></div>
+                  <a href="{{ url('exit') }}"><span class="w3-bar-item w3-right">Sair</span></a></div>
               @else
-                  <a href="{{ url('/') }}"><span class="w3-bar-item w3-right">Login</span></a></div>
+                  <a href="{{ url('/') }}"><span class="w3-bar-item w3-right">Entrar</span></a></div>
               @endif
             </div>
         </div>
@@ -38,15 +38,15 @@
           id="mySidebar"><br>
               <div class="w3-container w3-row">
                 <div class="w3-col s8 w3-bar">
-                  <span>Welcome, <strong>Usuário</strong></span><br>
+                  <span>Olá, <strong>{{auth()->user()->name}}</strong></span><br>
                 </div>
               </div>
               <hr>
               <div class="w3-container w3-blue">
-                <h5>Page Options:</h5>
+                <h5>Opções:</h5>
               </div>
               <div class="w3-bar-block">
-                <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Close Menu</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>Fechar Menu</a>
                 @section('sidebar')
                 @show
             </div>

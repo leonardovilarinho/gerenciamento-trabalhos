@@ -1,28 +1,30 @@
 @extends('template.template')
 
-@section('title', 'Entrar no sistema')
+@section('title', 'Editar curso')
 
 @section('sidebar')
-
+<a href="{{url('course/new')}}" class="w3-button w3-padding">Voltar atrás</a>
 @endsection
 
 @section('content')
-<article class="col-md-6 col-md-offset-3" style="border-left: 1px solid #eee">
+<article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
     <div class="m-b-md row">
         <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
-        <h3>Editar o curso {{$course->name}}</h3>
+        <h3>Editar {{$course->name}}</h3>
         <hr>
             <div class="panel-body">
             {!! Form::open(['url' => '/course/'.$course->id.'/edit/update', 'method' => 'post']) !!}
 
-                <div class="form-group">
-                    {{ Form::label('name', 'Nome do curso') }}
-                    {{ Form::text('name', $course->name, ['class' => 'form-control', 'required']) }}
-                </div>
+                <div class="row">
+                    <div class="form-group col-md-9">
+                        {{ Form::label('name', 'Nome do curso') }}
+                        {{ Form::text('name', $course->name, ['class' => 'form-control', 'required' => '']) }}
+                    </div>
 
-                <div class="form-group">
-                    {{ Form::label('abbreviation', 'Abreviação do curso') }}
-                    {{ Form::text('abbreviation', $course->abbreviation, ['class' => 'form-control', 'required']) }}
+                    <div class="form-group col-md-3">
+                        {{ Form::label('abbreviation', 'Abreviação do curso') }}
+                        {{ Form::text('abbreviation', $course->abbreviation, ['class' => 'form-control', 'required' => '', 'maxlength' => 4]) }}
+                    </div>
                 </div>
 
                 <hr>
@@ -37,7 +39,7 @@
                     @endif
                     </div>
 
-                    <div class="col-md-4 text-right">
+                    <div class="col-md-12 text-right">
                         {{  Form::submit('Salvar', ['class' => 'btn btn-default']) }}
                     </div>
                 </div>
