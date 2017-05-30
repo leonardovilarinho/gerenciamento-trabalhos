@@ -10,11 +10,11 @@ class AddController extends Controller
     public function index()
  	{
    		$disciplines = Discipline::paginate(5);
-        $teachers = Teacher::all()->keyBy('id')->toArray();
-        foreach ($teachers as $key => $value)
-            $teachers[$key] = $value['name'];
-
- 	  	return view('teacher.include');
+        $teachers = Teacher::all()->keyBy('user_id')->toArray();
+        foreach ($teachers as $key => $value){
+            $teachers[$key] = User::where('id', $value['user_id'])->first();
+        }
+ 	  	return view('teacher.include', compact('teachers'));
  	} 
 
 	// public function store(Request $request)

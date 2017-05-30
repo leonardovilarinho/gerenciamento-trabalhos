@@ -21,11 +21,11 @@
                     {{ Form::text('name', '..', ['class' => 'form-control', 'required']) }}
                 </div>
 
-                @foreach($displines as $displine)
+                @foreach($teachers as $teacher)
                     <div class="form-group text-right">
-                        {{ Form::label('displine[]', $displine->name) }}
+                        {{ Form::label('teacher[]', $teacher->name) }}
 
-                        {{ Form::checkbox('displine[]', $displine->id, in_array($displine->id, $select)) }}
+{{--                         {{ Form::checkbox('teacher[]', $displine->id, in_array($displine->id, $select)) }} --}}
                     </div>
                 @endforeach
 
