@@ -38,4 +38,15 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/discipline/{id}/edit', 'DisciplineController@edit');
 	Route::post('/discipline/{id}/edit/update', 'DisciplineController@update');
 	Route::get('/discipline/{id}/delete', 'DisciplineController@delete');
+
+
+	Route::get('/teacher/new', 'TeacherController@index');
+	Route::post('/teacher/new/save', 'TeacherController@store');
+	Route::get('/teacher/{id}/edit', 'TeacherController@edit');
+	Route::post('/teacher/{id}/edit/save', 'TeacherController@update');
+	Route::get('/teacher/{id}/delete', 'TeacherController@delete');
+
+	Route::get('include/displine/teacher', 'AddController@index');
+
+
 });
