@@ -3,56 +3,87 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Discipline, Teacher, User};
+use App\Model\{Discipline, Teacher, User, Course};
+use Illuminate\Support\Facades\DB;
 
 class AddController extends Controller
 {
     public function index()
  	{
-   		$disciplines = Discipline::paginate(5);
-        $teachers = Teacher::all()->keyBy('user_id')->toArray();
-        foreach ($teachers as $key => $value){
-            $teachers[$key] = User::where('id', $value['user_id'])->first();
+   		$courses = Course::all()->keyBy('id')->toArray();
+        foreach ($courses as $key => $value) {
+            $courses[$key] = $value['name'];
         }
- 	  	return view('teacher.include', compact('teachers'));
+
+        $links = [];
+
+        $linkk = DB::table('courses_disciplines')
+        ->select('*')
+        ->get();
+
+        foreach ($linkk as $value) {
+            if($value->teacher_id != null) {
+                $d = Discipline::find($value->discipline_id);
+
+                $links[] = [
+                    'teacher' => User::find($value->teacher_id)->name,
+                    'discipline' => $d->name,
+                    'course' => Course::find($value->course_id)->name,
+                    'course_id' => $value->course_id,
+                    'discipline_id' => $d->id,
+                ];
+            }
+        }
+
+ 	  	return view('teacher.include', compact('courses', 'links'));
  	} 
 
-	// public function store(Request $request)
-	// {
- //        $d = Discipline::where('name', $request->name)->first();
- //        if(!$d)
-	//        $d = Discipline::create($request->only('name'));
+    public function pt2(Request $request)
+    {
+        $course = Course::find($request->course);
+        $disciplines = [];
 
- //        $d->courses()->attach($request->teacher);
- //        return redirect('teacher/new');
- //  	}
+        foreach ($course->disciplines as $key => $value) {
+            $t = DB::table('courses_disciplines')
+                ->select('teacher_id')
+                ->where('course_id', $course->id)
+                ->where('discipline_id', $value->id)
+            ->first();
+            $disciplines[] = [
+                'id' => $value->id,
+                'name' =>  $value->name,
+                'checked' => $t->teacher_id != null ? ' *' : ''
+            ];
+        }
 
-    // public function edit($id){
-    // 	$discipline = Discipline::find($id);
-    //     $select = $discipline->teachers->pluck('id')->toArray();
-    //     $teachers = Teacher::all();
-    // 	return view('discipline.edit',compact('discipline', 'teachers', 'select')); 
-    // }
+        $teachers = Teacher::all()->keyBy('user_id')->toArray();
+        foreach ($teachers as $key => $value) {
+            $user =  User::find($key);
+            $teachers[$key] = $user->name;
+        }
 
-    // public function update(Request $request, $id){
-    //     $discipline = Discipline::find($id);
-    //     $select = $discipline->teacher->pluck('id')->toArray();
+        return view('teacher.include2', compact('course', 'disciplines', 'teachers'));
+    } 
 
-    //     foreach ($select as $s) {
-    //         if(!in_array($s, $request->teacher))
-    //             $teacher->displine()->detach($s);
-    //     }
 
-    //     foreach ($request->teacher as $c) {
-    //         if(!in_array($c, $select))
-    //             $discipline->courses()->attach($c);
-    //     }
-    // 	Discipline::find($id)->update($request->all());
-    // 	return redirect('/teacher/new')->withMsg('Editado com sucesso');
-    // }
+	public function store(Request $request)
+	{
+        foreach ($request->disciplines as $discipline) {
+            DB::table('courses_disciplines')
+                ->where('course_id', $request->course_id)
+                ->where('discipline_id', $discipline)
+            ->update(['teacher_id' => $request->teacher_id]);
+        }
 
- //    public function delete($id){
- //    	Discipline::find($id)->delete();
- //    	return redirect('/discipline/new');
- //    }
+        return redirect('include/displine/teacher')->withMsg('Professor incluido nas matérias');
+  	}
+
+   
+    public function delete($course, $discipline){
+    	 DB::table('courses_disciplines')
+            ->where('course_id', $course)
+            ->where('discipline_id', $discipline)
+        ->update(['teacher_id' => null]);
+    	return redirect('include/displine/teacher')->withMsg('Vinculo foi excluído');
+    }
 }

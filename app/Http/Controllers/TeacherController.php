@@ -25,7 +25,8 @@ class TeacherController extends Controller
 
   public function store(UserRequest $request)
   {
-    $senha = str_random(8);
+    // $senha = str_random(8);
+    $senha = '12345678';
     $user = User::create(
         [
             'name' => $request->name,

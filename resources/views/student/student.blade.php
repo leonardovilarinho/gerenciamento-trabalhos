@@ -1,6 +1,6 @@
 @extends('template.template')
 
-@section('title', 'Professores')
+@section('title', 'Estudantes')
 
 @section('sidebar')
 <a href="{{url('panel')}}" class="w3-button w3-padding">Voltar atrás</a>
@@ -10,21 +10,21 @@
 <article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
     <div class="m-b-md row">
         <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
-        <h3>Gerenciamento de professores</h3>
+        <h3>Gerenciamento de estudantes</h3>
         <hr>
             <div class="panel-body">
-            {!! Form::open(['url' => '/teacher/new/save', 'method' => 'post']) !!}
+            {!! Form::open(['url' => '/student/new/save', 'method' => 'post']) !!}
 
                 <div class="row">
 
                     <div class="form-group col-md-12">
                         {{ Form::label('name', 'Nome completo') }}
-                        {{ Form::text('name', '', ['class' => 'form-control', 'required' => '']) }}
+                        {{ Form::text('name', '', ['class' => 'form-control', 'required']) }}
                     </div>
 
                     <div class="form-group col-md-8">
                         {{ Form::label('email', 'Endereço de email') }}
-                        {{ Form::text('email', '', ['class' => 'form-control', 'required' => '' ]) }}
+                        {{ Form::text('email', '', ['class' => 'form-control', 'required']) }}
                     </div>
 
                     <div class="form-group col-md-4">
@@ -54,24 +54,24 @@
             {!! Form::close() !!}
             </div>
     <br>
-            {{ $teachers->links() }}
+            {{ $students->links() }}
             <table class="table" style="margin-left: 5px ; padding-right: 20px">
                 <thead>
                     <tr>
-                        <th>Nome do Professor</th>
+                        <th>Nome</th>
                         <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody style="text-align: left;">
-                    @foreach($teachers as $teacher)
+                    @foreach($students as $student)
                       <tr>
-                        <td>{{$teacher->user->name}}</td>
-                        <td>{{$teacher->user->email}}</td>
+                        <td>{{$student->user->name}}</td>
+                        <td>{{$student->user->email}}</td>
                         <td>
                             <div class="botao-index">
-                                <button class="edit-btn"><a href="{{ url('teacher/'.$teacher->user->id.'/edit') }}"><i class="glyphicon glyphicon glyphicon-edit"></i></a></button>
-                                <button class="delete-btn"><a href="{{url('teacher/'.$teacher->user->id.'/delete') }}"><i class="glyphicon glyphicon glyphicon-trash"></i></a></button>
+                                <button class="edit-btn"><a href="{{ url('student/'.$student->user->id.'/edit') }}"><i class="glyphicon glyphicon glyphicon-edit"></i></a></button>
+                                <button class="delete-btn"><a href="{{url('student/'.$student->user->id.'/delete') }}"><i class="glyphicon glyphicon glyphicon-trash"></i></a></button>
                             </div>
                         </td>
                       </tr>

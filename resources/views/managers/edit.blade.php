@@ -22,19 +22,19 @@
 
                 <div class="form-group">
                     {{ Form::label('email', 'Endereço de email') }}
-                    {{ Form::text('email', $manager->email, ['class' => 'form-control', 'required']) }}
+                    {{ Form::text('email', $manager->email, ['class' => 'form-control', 'required' => '', 'readonly' => '']) }}
                 </div>
 
                 <div class="form-group">
                     {{ Form::label('name', 'Nome completo') }}
-                    {{ Form::text('name', $manager->name, ['class' => 'form-control', 'required']) }}
+                    {{ Form::text('name', $manager->name, ['class' => 'form-control', 'required' => '']) }}
                 </div>
 
                 <div class="form-group row">
 
                     <div class="col-md-6">
                         {{ Form::label('username', 'Usuário') }}
-                        {{ Form::text('username', $manager->username,  ['class' => 'form-control', 'required']) }}
+                        {{ Form::text('username', $manager->username,  ['class' => 'form-control', 'required' => '']) }}
                     </div>
 
                     <div class="col-md-6">
