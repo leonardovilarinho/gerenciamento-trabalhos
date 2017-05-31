@@ -1,6 +1,6 @@
 @extends('template.template')
 
-@section('title', 'Vincular professor a disciplina')
+@section('title', 'Gerenciar trabalhos')
 
 @section('sidebar')
 <a href="{{url('panel')}}" class="w3-button w3-padding">Voltar atrás</a>
@@ -11,10 +11,10 @@
 <article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
     <div class="m-b-md row">
         <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
-        <h3>Incluir Professor</h3>
+        <h3>Gerenciar trabalhos</h3>
         <hr>
             <div class="panel-body">
-            {!! Form::open(['url' => 'include/displine/teacher/pt1', 'method' => 'post']) !!}
+            {!! Form::open(['url' => 'include/work/pt1', 'method' => 'post']) !!}
 
                 <div class="form-group text-right">
                     {{ Form::label('course', 'Selecione um curso') }}
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-md-12 text-right">
-                        {{  Form::submit('Próximo >>', ['class' => 'btn btn-default']) }}
+                        {{  Form::submit('Continuar criação >>', ['class' => 'btn btn-default']) }}
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -48,28 +48,34 @@
             <table class="table" style="margin-left: 5px ; padding-right: 20px">
                 <thead>
                     <tr>
-                        <th>Professor</th>
+                        <th>Título</th>
+                        <th>Nota</th>
+                        <th>Data</th>
                         <th>Curso</th>
-                        <th>Matéria</th>
+                        <th>PDF</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody style="text-align: left;">
-                    @foreach($links as $link)
+                    @foreach($works as $work)
                       <tr>
-                        <td>{{$link['teacher']}}</td>
-                        <td>{{$link['course']}}</td>
-                        <td>{{$link['discipline']}}</td>
+                        <td>{{$work->title}}</td>
+                        <td>{{$work->value}}</td>
+                        <td>{{date('d/m/Y', strtotime($work->term))}}</td>
+                        <td>{{$work->course->name}}</td>
+                        <td>
+                            <a href="{{url('download/works!!work-'.$work->id.'.pdf')}}">Download</a>
+                        </td>
                         <td>
                             <div class="botao-index">
-                                <button class="delete-btn"><a href="{{url('include/displine/teacher/'.$link['course_id'].'/'.$link['discipline_id']) }}"><i class="glyphicon glyphicon glyphicon-trash"></i></a></button>
+                                <button class="delete-btn"><a href="{{url('include/work/'.$work->id) }}"><i class="glyphicon glyphicon glyphicon-trash"></i></a></button>
                             </div>
                         </td>
                       </tr>
                     @endforeach
                 </tbody>
             </table>
-            </div>
+        </div>
         </div>
     </div>
 @endsection

@@ -1,30 +1,30 @@
 @extends('template.template')
 
-@section('title', 'Editar professor')
+@section('title', 'Editar estudante')
 
 @section('sidebar')
-<a href="{{url('teacher/new')}}" class="w3-button w3-padding">Voltar atrás</a>
+<a href="{{url('student/new')}}" class="w3-button w3-padding">Voltar atrás</a>
 @endsection
 
 @section('content')
 <article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
     <div class="m-b-md row">
         <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
-        <h3>Editar Professor</h3>
+        <h3>Editar Estudante</h3>
         <hr>
             <div class="panel-body">
-            {!! Form::open(['url' => 'teacher/' .$teacher->id. '/edit/save', 'method' => 'post']) !!}
+            {!! Form::open(['url' => 'student/' .$student->id. '/edit/save', 'method' => 'post']) !!}
 
                 <div class="row">
 
                     <div class="form-group col-md-8">
                         {{ Form::label('name', 'Nome completo') }}
-                        {{ Form::text('name', $teacher->name, ['class' => 'form-control', 'required' => '']) }}
+                        {{ Form::text('name', $student->name, ['class' => 'form-control', 'required'=> '']) }}
                     </div>
 
                     <div class="form-group col-md-4">
                         {{ Form::label('email', 'Endereço de email') }}
-                        {{ Form::text('email', $teacher->email, ['class' => 'form-control', 'required' => '', 'readonly' => '']) }}
+                        {{ Form::text('email', $student->email, ['class' => 'form-control', 'required' => '', 'readonly' => '']) }}
                     </div>
                         {{ Form::hidden('password', '.........') }}
                 </div>

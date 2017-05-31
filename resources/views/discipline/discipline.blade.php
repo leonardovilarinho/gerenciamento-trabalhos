@@ -10,7 +10,7 @@
 <article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
     <div class="m-b-md row">
         <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
-        <h3>Gerenciamento de Disciplinas</h3>
+        <h3>Gerenciamento de disciplinas</h3>
         <hr>
             <div class="panel-body">
             {!! Form::open(['url' => '/discipline/new', 'method' => 'post']) !!}
