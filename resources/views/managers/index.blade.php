@@ -31,7 +31,9 @@
                         <td>
                             <div class="botao-index">
                                 <button class="edit-btn"><a href="{{ url('admin/'.$manager->user->id.'/edit') }}"><i class="glyphicon glyphicon glyphicon-edit"></i></a></button>
-                                <button class="delete-btn"><a href="{{ url('admin/'.$manager->user->id.'/delete') }}"><i class="glyphicon glyphicon glyphicon-trash"></i></a></button>
+                                @if($manager->user->id != 1)
+                                 <button class="delete-btn"><a href="{{ url('admin/'.$manager->user->id.'/delete') }}"><i class="glyphicon glyphicon glyphicon-trash"></i></a></button>
+                                @endif
                             </div>
                         </td>
                       </tr>

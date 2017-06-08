@@ -11,6 +11,7 @@
 
     @if(auth()->user()->manager or auth()->user()->teacher)
     	<a href="{{url('/student/new')}}" class="w3-button w3-padding">Estudantes</a>
+    	<a href="{{url('include/displine/student')}}" class="w3-button w3-padding">Estudantes X Disciplinas</a>
     @endif
 
     @if(auth()->user()->manager)

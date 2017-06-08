@@ -72,6 +72,10 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('include/work/{id}', 'WorkController@delete');
 	Route::post('include/work/pt1', 'WorkController@pt2');
 	Route::post('include/work/end', 'WorkController@store');
-	
-	
+
+	Route::get('include/displine/student', 'StudentDisciplineController@index');
+	Route::get('include/displine/student/{course}/{discipline}/{student}', 'StudentDisciplineController@delete');
+	Route::post('include/displine/student/pt1', 'StudentDisciplineController@pt2');
+	Route::post('include/displine/student/pt2', 'StudentDisciplineController@store');
+
 });
