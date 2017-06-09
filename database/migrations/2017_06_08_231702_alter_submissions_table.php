@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterDisciplinesStudentsTable extends Migration
+class AlterSubmissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class AlterDisciplinesStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::table('disciplines_students', function (Blueprint $table) {
-            $table->integer('course_id')->unsigned();
-            $table->foreign('course_id')
-              ->references('id')
-              ->on('courses')
-            ->onDelete('cascade');
+        Schema::table('submissions', function (Blueprint $table) {
+            $table->string('file');
+            $table->string('mimetype');
         });
     }
 
@@ -29,7 +26,7 @@ class AlterDisciplinesStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('disciplines_students', function (Blueprint $table) {
+        Schema::table('submissions', function (Blueprint $table) {
             //
         });
     }

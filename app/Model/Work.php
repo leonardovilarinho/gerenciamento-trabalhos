@@ -11,12 +11,11 @@ class Work extends Model
     	'value',
     	'term',
     	'comment',
-    	'discipline_id',
-    	'course_id'
+    	'room_id'
     ];
 
-    public function course()
+    public function room()
     {
-    	return $this->belongsTo(Course::class, 'course_id', 'id');
+    	return $this->belongsTo(Room::class, 'room_id', 'id');
     }
 }

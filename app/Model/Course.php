@@ -10,9 +10,10 @@ class Course extends Model
         'name',
         'abbreviation',
     ];
-    
+
     public function disciplines()
     {
-        return $this->belongsToMany(Discipline::class, 'courses_disciplines', 'course_id', 'discipline_id');
+        return $this->belongsToMany(Discipline::class, 'rooms', 'course_id', 'discipline_id')
+        ->withPivot(['teacher_id']);
     }
 }

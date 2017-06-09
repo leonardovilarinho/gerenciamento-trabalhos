@@ -7,9 +7,8 @@
 @endsection
 
 @section('content')
-<article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
-    <div class="m-b-md row">
-        <div class="panel panel-default col-md-10 col-md-offset-1" style="text-align: center;">
+<article class="col-md-9 col-md-offset-3">
+        <div class="panel panel-default" style="text-align: center;">
         <h3>Gerenciamento de estudantes</h3>
         <hr>
             <div class="panel-body">
@@ -69,9 +68,19 @@
                         <td>{{$student->user->name}}</td>
                         <td>{{$student->user->email}}</td>
                         <td>
+
                             <div class="botao-index">
-                                <button class="edit-btn"><a href="{{ url('student/'.$student->user->id.'/edit') }}"><i class="glyphicon glyphicon glyphicon-edit"></i></a></button>
-                                <button class="delete-btn"><a href="{{url('student/'.$student->user->id.'/delete') }}"><i class="glyphicon glyphicon glyphicon-trash"></i></a></button>
+                                <a class="btn btn-xs btn-primary" href="{{ url('student/'.$student->user->id.'/edit') }}">
+                                    <i class="glyphicon glyphicon glyphicon-edit"></i> Editar
+                                </a>
+
+                                <a class="btn btn-xs btn-danger" href="{{url('student/'.$student->user->id.'/delete') }}">
+                                    <i class="glyphicon glyphicon glyphicon-trash"></i> Apagar
+                                </a>
+
+                                <a class="btn btn-xs btn-default" href="{{url('student/'.$student->user->id.'/link') }}">
+                                    <i class="glyphicon glyphicon glyphicon-plus"></i> Vincular
+                                </a>
                             </div>
                         </td>
                       </tr>
@@ -79,5 +88,4 @@
                 </tbody>
             </table>
         </div>
-    </div>
 @endsection

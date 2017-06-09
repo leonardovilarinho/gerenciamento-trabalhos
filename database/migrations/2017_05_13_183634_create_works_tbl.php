@@ -20,10 +20,10 @@ class CreateWorksTbl extends Migration
             $table->datetime('term');
             $table->text('comment');
 
-            $table->integer('discipline_id')->unsigned();
-            $table->foreign('discipline_id')
+            $table->integer('room_id')->unsigned();
+            $table->foreign('room_id')
               ->references('id')
-              ->on('disciplines')
+              ->on('rooms')
             ->onDelete('cascade');
 
             $table->timestamps();
