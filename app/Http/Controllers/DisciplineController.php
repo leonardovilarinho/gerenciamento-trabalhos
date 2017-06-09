@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Discipline, Course};
+use App\Model\{Discipline, Course, Room};
 
 class DisciplineController extends Controller
 {
   	public function index()
  	{
    		$disciplines = Discipline::paginate(5);
-        $courses = Course::all()->keyBy('id')->toArray();
-        foreach ($courses as $key => $value)
-            $courses[$key] = $value['name'];
+        $courses = Course::all();
 
  	  	return view('discipline.discipline',compact('disciplines', 'courses'));
- 	} 
+ 	}
 
 	public function store(Request $request)
 	{
@@ -23,7 +21,10 @@ class DisciplineController extends Controller
         if(!$d)
 	       $d = Discipline::create($request->only('name'));
 
-        $d->courses()->attach($request->course);
+        foreach ($request->courses as $course) {
+            $d->courses()->attach($course, ['teacher_id' => null]);
+        }
+
         return redirect('discipline/new');
   	}
 
@@ -31,7 +32,7 @@ class DisciplineController extends Controller
     	$discipline = Discipline::find($id);
         $select = $discipline->courses->pluck('id')->toArray();
         $courses = Course::all();
-    	return view('discipline.edit',compact('discipline', 'courses', 'select')); 
+    	return view('discipline.edit',compact('discipline', 'courses', 'select'));
     }
 
     public function update(Request $request, $id){
@@ -47,6 +48,7 @@ class DisciplineController extends Controller
             if(!in_array($c, $select))
                 $discipline->courses()->attach($c);
         }
+
     	Discipline::find($id)->update($request->all());
     	return redirect('/discipline/new')->withMsg('Editado com sucesso');
     }
@@ -54,5 +56,11 @@ class DisciplineController extends Controller
     public function delete($id){
     	Discipline::find($id)->delete();
     	return redirect('/discipline/new');
+    }
+
+    public function works($course, $disc)
+    {
+        $room = Room::where('course_id', $course)->where('discipline_id', $disc)->first();
+        return view('discipline.works', compact('room'));
     }
 }

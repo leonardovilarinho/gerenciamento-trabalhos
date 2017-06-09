@@ -10,6 +10,18 @@ Route::get('download/{file}', function($file) {
 	]);
 });
 
+
+Route::get('download/{file}/{id}', function($file, $id) {
+	$file = str_replace('!!', '/', $file);
+	$file = base_path('storage/app/'.$file);
+
+	return response()->make(file_get_contents($file), 200, [
+	    'Content-Type' => App\Model\Submission::find($id)->mimetype,
+	    'Content-Disposition' => 'inline; filename="'.str_replace('!!', '/', $file).'"'
+	]);
+});
+
+
 Route::group(['middleware' => 'guest'], function() {
 	Route::get('primeiro-acesso', 'InstalacaoController@inicioForm');
 	Route::post('primeiro-acesso', 'InstalacaoController@registroPrimeiroAcesso');
@@ -36,6 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('{id}/edit', 'AdminController@edit');
 	});
 
+	Route::get('/course/{id}/disciplines', 'CourseController@disciplines');
 	Route::get('/course/new', 'CourseController@index');
 	Route::post('/course/new', 'CourseController@store');
 	Route::get('/course/{id}/edit', 'CourseController@edit');
@@ -43,6 +56,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/course/{id}/delete', 'CourseController@delete');
 
 
+	Route::get('course/{course}/discipline/{disc}/works', 'DisciplineController@works');
 	Route::get('/discipline/new', 'DisciplineController@index');
 	Route::post('/discipline/new', 'DisciplineController@store');
 	Route::get('/discipline/{id}/edit', 'DisciplineController@edit');
@@ -50,32 +64,34 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/discipline/{id}/delete', 'DisciplineController@delete');
 
 
-	Route::get('/teacher/new', 'TeacherController@index');
-	Route::post('/teacher/new/save', 'TeacherController@store');
-	Route::get('/teacher/{id}/edit', 'TeacherController@edit');
-	Route::post('/teacher/{id}/edit/save', 'TeacherController@update');
-	Route::get('/teacher/{id}/delete', 'TeacherController@delete');
+	Route::group(['prefix' => 'teacher'], function() {
+		Route::get('/new', 'TeacherController@index');
+		Route::post('/new/save', 'TeacherController@store');
+		Route::get('/{id}/edit', 'TeacherController@edit');
+		Route::post('/{id}/edit/save', 'TeacherController@update');
+		Route::get('/{id}/delete', 'TeacherController@delete');
 
-	Route::get('include/displine/teacher', 'AddController@index');
-	Route::get('include/displine/teacher/{course}/{discipline}', 'AddController@delete');
-	Route::post('include/displine/teacher/pt1', 'AddController@pt2');
-	Route::post('include/displine/teacher/pt2', 'AddController@store');
+		Route::get('{id}/link', 'TeacherController@link');
+		Route::post('{id}/link', 'TeacherController@linkGo');
+		Route::post('{id}/link/finish', 'TeacherController@linkFinish');
+	});
 
-	Route::get('/student/new', 'StudentController@index');
-	Route::post('/student/new/save', 'StudentController@store');
-	Route::get('/student/{id}/edit', 'StudentController@edit');
-	Route::post('/student/{id}/edit/save', 'StudentController@update');
-	Route::get('/student/{id}/delete', 'StudentController@delete');
+	Route::group(['prefix' => 'student'], function() {
+		Route::get('/new', 'StudentController@index');
+		Route::post('/new/save', 'StudentController@store');
+		Route::get('/{id}/edit', 'StudentController@edit');
+		Route::post('/{id}/edit/save', 'StudentController@update');
+		Route::get('/{id}/delete', 'StudentController@delete');
 
-	Route::get('include/work', 'WorkController@index');
-	Route::get('include/work/pt2/{course}', 'WorkController@pt2View');
-	Route::get('include/work/{id}', 'WorkController@delete');
-	Route::post('include/work/pt1', 'WorkController@pt2');
-	Route::post('include/work/end', 'WorkController@store');
+		Route::get('{id}/link', 'StudentController@link');
+		Route::post('{id}/link', 'StudentController@linkGo');
+		Route::post('{id}/link/finish', 'StudentController@linkFinish');
+	});
 
-	Route::get('include/displine/student', 'StudentDisciplineController@index');
-	Route::get('include/displine/student/{course}/{discipline}/{student}', 'StudentDisciplineController@delete');
-	Route::post('include/displine/student/pt1', 'StudentDisciplineController@pt2');
-	Route::post('include/displine/student/pt2', 'StudentDisciplineController@store');
-
+	Route::get('/work', 'WorkController@index');
+	Route::get('/work/new', 'WorkController@form');
+	Route::get('/work/{id}/delete', 'WorkController@delete');
+	Route::post('work/new', 'WorkController@store');
+	Route::get('work/{id}/submission', 'WorkController@submission');
+	Route::post('work/{id}/submission', 'WorkController@submissionPost');
 });

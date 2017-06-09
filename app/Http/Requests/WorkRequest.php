@@ -27,8 +27,7 @@ class WorkRequest extends FormRequest
             'title' => 'required|max:45|min:3',
             'value' => 'required|numeric',
             'term' => 'required|date',
-            'discipline_id' => 'required|numeric',
-            'course_id' => 'required|numeric',
+            'rooms' => 'required',
             'pdf' => 'required|mimes:pdf',
         ];
     }
