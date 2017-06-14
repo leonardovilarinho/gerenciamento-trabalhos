@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Teacher;
-use App\Model\{User, Course};
+use App\Model\{User, Course, Room};
 use App\Http\Requests\{TeacherRequest, UserRequest};
 
 
@@ -58,32 +58,50 @@ class TeacherController extends Controller
     {
         $type = 'teacher';
 
+        $rooms = Room::all();
         $user = User::find($id);
-        $courses = Course::all()->keyBy('id')->toArray();
-        foreach ($courses as $key => $course)
-            $courses[$key] = $course['name'];
 
-        return view('link.courses', compact('type', 'user', 'courses'));
+        return view('link.rooms_teacher', compact('type', 'user', 'rooms', 'id'));
     }
+
+    // public function linkGo(Request $request, $id)
+    // {
+    //     $type = 'teacher';
+
+    //     $user = User::find($id);
+    //     $course = Course::find($request->course);
+    //     $disciplines = $course->disciplines;
+
+    //     return view('link.disciplines', compact('type', 'user', 'disciplines', 'course'));
+    // }
+
+    // public function linkFinish(Request $request, $id)
+    // {
+    //     $user = User::find($id);
+    //     $course = Course::find($request->course_id);
+    //     $disciplines = $course->disciplines;
+    //     foreach ($request->disciplines as $discipline) {
+    //         $course->disciplines()->updateExistingPivot($discipline, ['teacher_id' => $user->id]);
+    //     }
+
+    //     return redirect('teacher/new')->withMsg($user->name . ' foi vinculado!');
+    // }
 
     public function linkGo(Request $request, $id)
     {
-        $type = 'teacher';
 
         $user = User::find($id);
-        $course = Course::find($request->course);
-        $disciplines = $course->disciplines;
+        $rooms = Room::where('teacher_id', $id)->get();
 
-        return view('link.disciplines', compact('type', 'user', 'disciplines', 'course'));
-    }
+        foreach ($rooms as $room) {
+            $room->teacher_id = null;
+            $room->save();
+        }
 
-    public function linkFinish(Request $request, $id)
-    {
-        $user = User::find($id);
-        $course = Course::find($request->course_id);
-        $disciplines = $course->disciplines;
-        foreach ($request->disciplines as $discipline) {
-            $course->disciplines()->updateExistingPivot($discipline, ['teacher_id' => $user->id]);
+        foreach ($request->rooms as $room) {
+            $r = Room::find($room);
+            $r->teacher_id = $id;
+            $r->save();
         }
 
         return redirect('teacher/new')->withMsg($user->name . ' foi vinculado!');

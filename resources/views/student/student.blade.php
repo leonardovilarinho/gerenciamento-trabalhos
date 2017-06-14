@@ -58,6 +58,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Usuário</th>
                         <th>Email</th>
                         <th>Ações</th>
                     </tr>
@@ -66,6 +67,7 @@
                     @foreach($students as $student)
                       <tr>
                         <td>{{$student->user->name}}</td>
+                        <td>{{$student->user->username}}</td>
                         <td>{{$student->user->email}}</td>
                         <td>
 

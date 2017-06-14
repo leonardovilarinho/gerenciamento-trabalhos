@@ -60,7 +60,8 @@ class DisciplineController extends Controller
 
     public function works($course, $disc)
     {
+        $discipline = Discipline::find($disc);
         $room = Room::where('course_id', $course)->where('discipline_id', $disc)->first();
-        return view('discipline.works', compact('room'));
+        return view('discipline.works', compact('room', 'discipline'));
     }
 }

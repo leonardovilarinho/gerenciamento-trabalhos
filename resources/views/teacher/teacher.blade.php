@@ -58,6 +58,7 @@
             <thead>
                 <tr>
                     <th>Nome do Professor</th>
+                    <th>Usuário</th>
                     <th>Email</th>
                     <th>Ações</th>
                 </tr>
@@ -66,6 +67,7 @@
                 @foreach($teachers as $teacher)
                   <tr>
                     <td>{{$teacher->user->name}}</td>
+                    <td>{{$teacher->user->username  }}</td>
                     <td>{{$teacher->user->email}}</td>
                     <td>
                         <div class="botao-index">

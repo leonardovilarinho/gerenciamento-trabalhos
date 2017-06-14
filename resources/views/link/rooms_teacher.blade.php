@@ -9,7 +9,7 @@
             <h3>Incluir '{{ $user->name }}' em disciplinas de diversas turmas</h3>
             <hr>
             <div class="panel-body">
-                {!! Form::open(['url' => 'student/'. $user->id . '/link', 'method' => 'post']) !!}
+                {!! Form::open(['url' => 'teacher/'. $user->id . '/link', 'method' => 'post']) !!}
 
                     <table class="table" style="margin-left: 5px ; padding-right: 20px">
                         <thead>
@@ -31,7 +31,7 @@
                                 <td>
                                     <div class="botao-index">
                                         {{ Form::label('rooms[]', 'Vincular') }}
-                                        {{ Form::checkbox('rooms[]', $room->id, in_array($room->id, $exists)) }}
+                                        {{ Form::checkbox('rooms[]', $room->id, $room->teacher_id == $id) }}
                                     </div>
                                 </td>
                               </tr>
@@ -57,7 +57,7 @@
                         @endif
                         </div>
                         <div class="col-md-12 text-right">
-                            {{  Form::submit('Adicionar nas turmas', ['class' => 'btn btn-default']) }}
+                            {{  Form::submit('Tornar professor', ['class' => 'btn btn-default']) }}
                         </div>
                     </div>
                 {!! Form::close() !!}

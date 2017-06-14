@@ -73,7 +73,6 @@ Route::group(['middleware' => 'auth'], function() {
 
 		Route::get('{id}/link', 'TeacherController@link');
 		Route::post('{id}/link', 'TeacherController@linkGo');
-		Route::post('{id}/link/finish', 'TeacherController@linkFinish');
 	});
 
 	Route::group(['prefix' => 'student'], function() {
@@ -91,7 +90,12 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/work', 'WorkController@index');
 	Route::get('/work/new', 'WorkController@form');
 	Route::get('/work/{id}/delete', 'WorkController@delete');
+	Route::get('/work/{id}/edit', 'WorkController@edit');
+	Route::post('/work/{id}/edit', 'WorkController@update');
 	Route::post('work/new', 'WorkController@store');
 	Route::get('work/{id}/submission', 'WorkController@submission');
+	Route::get('work/{id}/submission/{sub}/edit', 'WorkController@submissionEditForm');
+	Route::post('work/{id}/submission/{sub}/edit', 'WorkController@submissionEdit');
+	Route::get('work/{id}/submission/{sub}', 'WorkController@submissionDetails');
 	Route::post('work/{id}/submission', 'WorkController@submissionPost');
 });

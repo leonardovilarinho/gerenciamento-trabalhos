@@ -83,10 +83,8 @@ class WorkController extends Controller
                     ->where('student_id', $svalue->student->id)
                 ->first();
 
-                if($exist) {
-                    echo 'encontrou';
+                if($exist)
                     unset($students[$skey]);
-                }
             }
         }
 
@@ -118,4 +116,51 @@ class WorkController extends Controller
 
         return redirect('work/'.$id.'/submission')->withMsg('Trabalho foi submetido com sucesso');
     }
+
+    public function edit($id)
+    {
+        if(!auth()->user()->teacher)
+            return redirect('/error');
+
+        $work = Work::find($id);
+        $term = date('Y-m-d', strtotime($work->term));  
+
+        return view('work.edit', compact('term', 'id'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        if(!auth()->user()->teacher)
+            return redirect('/error');
+
+        $work = Work::find($id);
+        $work->term = $request->term;
+        $work->save();
+
+        return redirect('work')->withMsg('Data de ' . $work->title . ' foi alterada!');
+    }
+
+    public function submissionEditForm($id, $sub)
+    {
+        $submission = Submission::find($sub);
+
+        return view('work.value', compact('submission', 'id'));
+    }
+
+    public function submissionEdit(Request $request, $id, $sub)
+    {
+        $submission = Submission::find($sub);
+        $submission->value = $request->value;
+        $submission->save();
+
+        return redirect('work/'.$id.'/submission')->withMsg('Nota de submissão alterada!');
+    }
+
+     public function submissionDetails($id, $sub)
+    {
+        $submission = Submission::find($sub);
+
+        return view('work.sub_details', compact('submission', 'id'));
+    }
+
 }

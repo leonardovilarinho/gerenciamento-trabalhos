@@ -18,6 +18,11 @@ class Submission extends Model
 
     public function work()
     {
-    	return $this->belongsTo(Work::class, 'id', 'work_id');
+    	return $this->belongsTo(Work::class, 'work_id', 'id');
+    }
+
+    public function students()
+    {
+        return $this->hasMany(SubmissionStudent::class, 'submission_id', 'id');
     }
 }

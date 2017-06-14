@@ -34,7 +34,14 @@
                         <tr>
                             <td>{{$work['title']}}</td>
                             <td>{{$work['value']}}</td>
-                            <td>{{date('d/m/Y', strtotime($work['term']))}}</td>
+                            <td>
+                                <p>
+                                    {{date('d/m/Y', strtotime($work['term']))}}
+                                    <a style="width: 25px; float: right;" class="btn btn-xs btn-primary" href="{{url('work/'.$work['id'].'/edit') }}">
+                                        <i class="glyphicon glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                </p>
+                            </td>
                             <td>{{$work['room']['course']['abbreviation']}}</td>
                             <td>
                             <a href="{{url('download/works!!work-'.$work['id'].'.pdf')}}">Download</a>
@@ -43,6 +50,9 @@
                             <div class="botao-index">
                                 <a class="btn btn-xs btn-danger" href="{{url('work/'.$work['id'].'/delete') }}">
                                     <i class="glyphicon glyphicon glyphicon-trash"></i> Apagar
+                                </a>
+                                 <a class="btn btn-xs btn-primary" href="{{url('work/'.$work['id'].'/submission') }}">
+                                    <i class="glyphicon glyphicon glyphicon-list"></i> Submissões
                                 </a>
                             </div>
                             </td>

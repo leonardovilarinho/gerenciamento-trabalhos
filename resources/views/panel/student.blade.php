@@ -8,8 +8,9 @@
 @endsection
 
 @section('content')
-<article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
 
+<article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
+<h2>Meus cursos</h2>
 	@foreach ($rooms_student as $link)
 		<a href="{{ url('course/'.$link->room->course->id.'/disciplines') }}">
 		    <div class="w3-row-padding w3-margin-bottom">
