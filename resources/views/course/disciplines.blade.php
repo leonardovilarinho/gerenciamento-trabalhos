@@ -5,11 +5,18 @@
 @section('content')
 <article class="col-md-9 col-md-offset-3" style="border-left: 1px solid #eee">
 <h2>Disciplinas do curso {{ $course->name }}</h2>
-    @foreach ($disciplines as $discipline)
-        <a href="{{ url('course/'.$course->id.'/discipline/'.$discipline->id.'/works') }}">
-            <div class="w3-row-padding w3-margin-bottom">
+
+    <div class="w3-row-padding w3-margin-bottom">
+        @foreach ($disciplines as $key =>$discipline)
+            <a href="{{ url('course/'.$course->id.'/discipline/'.$discipline->id.'/works') }}">
                 <div class="w3-quarter">
-                    <div class="w3-container w3-red w3-padding-16">
+                    @if(($key + 1) % 2 == 0)
+                        <div class="w3-container w3-red w3-padding-16">
+                    @elseif(($key + 1) % 3 == 0)
+                        <div class="w3-container w3-blue w3-padding-16">
+                    @else
+                        <div class="w3-container w3-green w3-padding-16">
+                    @endif
                         <div class="w3-left">
                             <i class="w3-xxxlarge glyphicon glyphicon-bookmark"></i>
                         </div>
@@ -20,9 +27,9 @@
                         <h4>{{ $discipline->name }}</h4>
                     </div>
                 </div>
-            </div>
-        </a>
-    @endforeach
+            </a>
+        @endforeach
+    </div>
 
 </article>
 @endsection
