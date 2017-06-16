@@ -188,3 +188,8 @@ li.object:hover {
 }
 
 .w3-light-grey { background: #fff !important  }
+
+.w3-quarter .w3-container {
+    min-height: 160px;
+    max-height: 160px;
+}

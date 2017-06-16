@@ -11,11 +11,11 @@
             <a href="{{ url('course/'.$course->id.'/discipline/'.$discipline->id.'/works') }}">
                 <div class="w3-quarter">
                     @if(($key + 1) % 2 == 0)
-                        <div class="w3-container w3-red w3-padding-16">
+                        <div class="w3-container w3-green w3-padding-16">
                     @elseif(($key + 1) % 3 == 0)
                         <div class="w3-container w3-blue w3-padding-16">
                     @else
-                        <div class="w3-container w3-green w3-padding-16">
+                        <div class="w3-container w3-red w3-padding-16">
                     @endif
                         <div class="w3-left">
                             <i class="w3-xxxlarge glyphicon glyphicon-bookmark"></i>
