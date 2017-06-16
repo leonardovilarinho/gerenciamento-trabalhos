@@ -19,6 +19,9 @@
   <body class="w3-light-grey">
         <div class="w3-bar w3-top w3-black w3-large menu-top" style="z-index:4; ">
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();">Menu</button>
+            <div style="float: left; margin-top: 7px; margin-left: 10px">
+              Gerenciamento de trabalhos
+            </div>
             <div class="menu-top-nome">
               @if(auth()->check())
                   <a href="{{ url('exit') }}"><span class="w3-bar-item w3-right">Sair</span></a></div>

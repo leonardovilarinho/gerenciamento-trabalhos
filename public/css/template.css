@@ -1,6 +1,6 @@
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 html, body {
-    background-color: #fff;
+    background-color: #fff !important;
     color: #636b6f;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
@@ -186,3 +186,5 @@ li.object:hover {
 .botao-index {
     display: inline;
 }
+
+.w3-light-grey { background: #fff !important  }
