@@ -22,6 +22,6 @@ class SubmissionStudent extends Model
 
     public function submission()
     {
-    	return $this->belongsTo(Submission::class, 'id', 'submission_id');
+    	return $this->belongsTo(Submission::class, 'submission_id', 'id');
     }
 }

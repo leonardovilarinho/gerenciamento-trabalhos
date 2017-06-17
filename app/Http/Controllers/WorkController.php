@@ -33,7 +33,7 @@ class WorkController extends Controller
 	{
         if(!auth()->user()->teacher)
             return redirect('/error');
-        $comment =  $request->comment != null or  $request->comment != '' ?  $request->comment : ' ';
+        $comment = ( $request->comment != null or  $request->comment != '') ?  $request->comment : ' ';
 
         foreach ($request->rooms as $room) {
             $work = Work::create(
@@ -65,14 +65,18 @@ class WorkController extends Controller
 
         $subs = Submission::where('work_id', $id)->get();
 
+        $value = 0;
         foreach ($subs as $s) {
             $exist = SubmissionStudent::where('submission_id', $s->id)
                 ->where('student_id', auth()->user()->id)
             ->first();
 
-            if($exist)
+            if($exist) {
+                $value = $exist->submission->value;
                 $term = 1;
+            }
         }
+
 
         $students = $work->room->students;
 
@@ -88,7 +92,7 @@ class WorkController extends Controller
             }
         }
 
-        return view('work.submission', compact('work', 'students', 'term', 'subs'));
+        return view('work.submission', compact('work', 'students', 'term', 'subs', 'value'));
     }
 
     public function submissionPost(Request $request, $id)

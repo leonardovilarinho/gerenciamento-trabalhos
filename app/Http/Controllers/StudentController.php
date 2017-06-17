@@ -72,7 +72,7 @@ class StudentController extends Controller
     public function link($id)
     {
         $type = 'student';
-        $rooms = Room::all();
+        $rooms = auth()->user()->manager ? Room::all() : Room::where('teacher_id', auth()->user()->id)->get();
         $user = User::find($id);
         $exists = RoomStudent::where('student_id', $user->id)->pluck('room_id')->toArray();
         return view('link.rooms', compact('type', 'user', 'rooms', 'exists'));

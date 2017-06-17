@@ -10,10 +10,16 @@
     <hr>
         <div class="panel-body">
             <div class="text-left">
-                <p><strong>Valor: </strong>{{ $work->value }}</p>
+            <p><strong>Valor: </strong>{{ $work->value }}</p>
             <p><strong>Entrega até: </strong>{{ date('d/m/Y', strtotime($work->term))}}</p>
             <p><strong>Anexo: </strong> <a href="{{url('download/works!!work-'.$work->id.'.pdf')}}">Download</a> </p>
             <p><strong>Descrição: </strong>{{ $work->comment }}</p>
+
+            @if(auth()->user()->student)
+                <div class="text-right">
+                    <h2>Minha nota: {{ $value }}</h2>
+                </div>
+            @endif
             </div>
         <hr>
         @if($term == 0 and !auth()->user()->teacher)
