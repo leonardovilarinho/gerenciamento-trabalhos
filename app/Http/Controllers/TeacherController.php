@@ -64,28 +64,6 @@ class TeacherController extends Controller
         return view('link.rooms_teacher', compact('type', 'user', 'rooms', 'id'));
     }
 
-    // public function linkGo(Request $request, $id)
-    // {
-    //     $type = 'teacher';
-
-    //     $user = User::find($id);
-    //     $course = Course::find($request->course);
-    //     $disciplines = $course->disciplines;
-
-    //     return view('link.disciplines', compact('type', 'user', 'disciplines', 'course'));
-    // }
-
-    // public function linkFinish(Request $request, $id)
-    // {
-    //     $user = User::find($id);
-    //     $course = Course::find($request->course_id);
-    //     $disciplines = $course->disciplines;
-    //     foreach ($request->disciplines as $discipline) {
-    //         $course->disciplines()->updateExistingPivot($discipline, ['teacher_id' => $user->id]);
-    //     }
-
-    //     return redirect('teacher/new')->withMsg($user->name . ' foi vinculado!');
-    // }
 
     public function linkGo(Request $request, $id)
     {
@@ -98,10 +76,12 @@ class TeacherController extends Controller
             $room->save();
         }
 
-        foreach ($request->rooms as $room) {
-            $r = Room::find($room);
-            $r->teacher_id = $id;
-            $r->save();
+        if($request->has('rooms')) {
+            foreach ($request->rooms as $room) {
+                $r = Room::find($room);
+                $r->teacher_id = $id;
+                $r->save();
+            }
         }
 
         return redirect('teacher/new')->withMsg($user->name . ' foi vinculado!');

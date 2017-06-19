@@ -85,11 +85,13 @@ class StudentController extends Controller
         $user = User::find($id);
         $rooms = RoomStudent::where('student_id', $id)->delete();
 
-        foreach ($request->rooms as $room) {
-            $r = RoomStudent::where('student_id', $user->id)->where('room_id', $room)->first();
+        if($request->has('rooms')) {
+            foreach ($request->rooms as $room) {
+                $r = RoomStudent::where('student_id', $user->id)->where('room_id', $room)->first();
 
-            if(!$r)
-                RoomStudent::create(['student_id' => $user->id, 'room_id' => $room]);
+                if(!$r)
+                    RoomStudent::create(['student_id' => $user->id, 'room_id' => $room]);
+            }
         }
 
         return redirect('student/new')->withMsg($user->name . ' foi vinculado!');
