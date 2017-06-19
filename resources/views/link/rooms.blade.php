@@ -15,6 +15,7 @@
                         <thead>
                             <tr>
                                 <th>Turma</th>
+                                <th>Semestre</th>
                                 <th>Curso</th>
                                 <th>Matéria</th>
                                 <th>Professor</th>
@@ -25,6 +26,7 @@
                             @foreach($rooms as $room)
                               <tr>
                                 <td>{{$room->id}}</td>
+                                <td>{{$room->semester}}</td>
                                 <td>{{$room->course->abbreviation}}</td>
                                 <td>{{$room->discipline->name}}</td>
                                 <td>{{$room->teacher['name']}}</td>

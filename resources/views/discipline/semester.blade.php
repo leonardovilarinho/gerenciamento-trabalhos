@@ -1,15 +1,15 @@
 @extends('template.template')
 
-@section('title', 'Vincular a uma turma')
+@section('title', 'Gerenciar turmas')
 
 @section('content')
 <article class="col-md-9 col-md-offset-3">
     <div class="m-b-md row">
         <div class="panel panel-default" style="text-align: center;">
-            <h3>Incluir '{{ $user->name }}' em disciplinas de diversas turmas</h3>
+            <h3>Gerenciamento de turmas</h3>
             <hr>
             <div class="panel-body">
-                {!! Form::open(['url' => 'teacher/'. $user->id . '/link', 'method' => 'post']) !!}
+                {!! Form::open(['url' => 'semester/new/save', 'method' => 'post']) !!}
 
                     <table class="table" style="margin-left: 5px ; padding-right: 20px">
                         <thead>
@@ -19,7 +19,7 @@
                                 <th>Curso</th>
                                 <th>Matéria</th>
                                 <th>Professor</th>
-                                <th>Adicionar?</th>
+                                <th>Semestre</th>
                             </tr>
                         </thead>
                         <tbody style="text-align: left;">
@@ -32,8 +32,10 @@
                                 <td>{{$room->teacher['name']}}</td>
                                 <td>
                                     <div class="botao-index">
-                                        {{ Form::label('rooms[]', 'Vincular') }}
-                                        {{ Form::checkbox('rooms[]', $room->id, $room->teacher_id == $id) }}
+                                        <select required name="semesters[]" class="form-control">
+                                            <option value="1" {{ $room->semester == 1 ? 'selected' : '' }}>1º Semestre</option>
+                                            <option value="2" {{ $room->semester == 2 ? 'selected' : '' }}>2º Semestre</option>
+                                        </select>
                                     </div>
                                 </td>
                               </tr>
@@ -59,7 +61,7 @@
                         @endif
                         </div>
                         <div class="col-md-12 text-right">
-                            {{  Form::submit('Tornar professor', ['class' => 'btn btn-default']) }}
+                            {{  Form::submit('Salvar edições', ['class' => 'btn btn-default']) }}
                         </div>
                     </div>
                 {!! Form::close() !!}

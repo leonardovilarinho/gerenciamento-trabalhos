@@ -57,6 +57,7 @@
                     <a href="{{url('/course/new')}}" class="w3-button w3-padding">Cursos</a>
                     <a href="{{url('/discipline/new')}}" class="w3-button w3-padding">Disciplinas</a>
                     <a href="{{url('/teacher/new')}}" class="w3-button w3-padding">Professores</a>
+                    <a href="{{url('/semester/new')}}" class="w3-button w3-padding">Semestres</a>
                   @endif
 
                   @if(auth()->user()->manager or auth()->user()->teacher)

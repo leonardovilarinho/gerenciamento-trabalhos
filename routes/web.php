@@ -63,6 +63,11 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::post('/discipline/{id}/edit/update', 'DisciplineController@update');
 	Route::get('/discipline/{id}/delete', 'DisciplineController@delete');
 
+	Route::group(['prefix' => 'semester'], function() {
+		Route::get('/new', 'SemesterController@index');
+		Route::post('/new/save', 'SemesterController@store');
+	});
+
 
 	Route::group(['prefix' => 'teacher'], function() {
 		Route::get('/new', 'TeacherController@index');

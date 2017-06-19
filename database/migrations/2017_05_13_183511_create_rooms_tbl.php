@@ -33,6 +33,8 @@ class CreateRoomsTbl extends Migration
               ->references('id')
               ->on('courses')
             ->onDelete('cascade');
+
+            $table->tinyInteger('semester')->nullable();
         });
     }
 
